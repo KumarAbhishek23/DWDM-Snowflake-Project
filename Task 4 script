@@ -1,0 +1,32 @@
+-- Ensure context
+USE WAREHOUSE dwdm_wh;
+USE DATABASE dwdm_db;
+USE SCHEMA dwdm_schema;
+
+-- 1. Create table and insert initial records with a new project dataset
+CREATE OR REPLACE TABLE project_metrics (
+    project_id INT,
+    project_name STRING,
+    status STRING,
+    budget FLOAT
+);
+
+INSERT INTO project_metrics VALUES 
+    (301, 'CloudMigration', 'Active', 150000),
+    (302, 'DataPipeline', 'Pending', 80000),
+    (303, 'AImodelDeploy', 'In-Progress', 120000);
+
+SELECT * FROM project_metrics;
+
+-- 2. Modify records (Wait 10-15 seconds before running updates/deletes)
+UPDATE project_metrics 
+SET budget = 180000 
+WHERE project_id = 301;
+
+DELETE FROM project_metrics 
+WHERE project_id = 303;
+
+SELECT * FROM project_metrics;
+
+-- 3. Time Travel query using Offset
+SELECT * FROM project_metrics AT (OFFSET => -15);
