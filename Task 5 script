@@ -1,0 +1,31 @@
+-- Ensure context
+USE WAREHOUSE dwdm_wh;
+USE DATABASE dwdm_db;
+USE SCHEMA dwdm_schema;
+
+-- 1. Setup table with an inventory dataset
+CREATE OR REPLACE TABLE inventory_stock (
+    item_id INT,
+    item_name STRING,
+    units_in_stock INT
+);
+
+INSERT INTO inventory_stock VALUES 
+    (401, 'Wireless Mouse', 150),
+    (402, 'Mechanical Keyboard', 85),
+    (403, 'HD Monitor', 40);
+
+SELECT * FROM inventory_stock;
+
+-- 2. Accidental deletion
+DELETE FROM inventory_stock;
+
+-- Verification of empty table state
+SELECT * FROM inventory_stock;
+
+-- 3. Recover deleted records using Time Travel statement ID
+INSERT INTO inventory_stock
+SELECT * FROM inventory_stock BEFORE (STATEMENT => LAST_QUERY_ID());
+
+-- 4. Verify full recovery
+SELECT * FROM inventory_stock;
