@@ -1,37 +1,18 @@
 # DWDM-Snowflake-Project
 An end-to-end Snowflake data warehousing project covering cloud DDL/DML operations, batch data ingestion via SnowSQL, and Time Travel disaster recovery.
-# ❄️ Snowflake Data Warehousing & Data Management (DWDM)
+# Snowflake DWDM Project
 
-[![Snowflake](https://img.shields.io/badge/Platform-Snowflake-29B5EF?logo=snowflake&logoColor=white)](https://snowflake.com)
-[![SnowSQL](https://img.shields.io/badge/CLI-SnowSQL-orange)](https://docs.snowflake.com)
-[![Status](https://img.shields.io/badge/Status-Completed-success)](https://github.com)
+A simple end-to-end project demonstrating Snowflake data warehousing, batch CSV loading via SnowSQL, and Time Travel recovery.
 
-An end-to-end cloud data warehousing project implementing DDL/DML operations, command-line staging, batch CSV loading via SnowSQL, and Time Travel recovery.
-
-## 🚀 Quick Navigation
-
-| Task ID | Module Description | Key Commands / Functions Used |
-| :--- | :--- | :--- |
-| **Task 1** | Session & CLI Login | `snowsql`, `CURRENT_USER()`, `CURRENT_ROLE()` |
-| **Task 2** | DDL Objects & DML Lifecycle | `CREATE WAREHOUSE`, `INSERT`, `UPDATE`, `DELETE` |
-| **Task 3** | Batch Staging & Ingestion | `PUT`, `COPY INTO`, `LIST` |
-| **Task 4** | Historical Time Travel | `AT (OFFSET => ...)` |
-| **Task 5** | Disaster Recovery / Rollback | `BEFORE (STATEMENT => LAST_QUERY_ID())` |
-
----
-
-## ⚙️ Environment Configuration
-
+## Project Details
 * **Account Identifier:** `yjemxcs-hj02840`
+* **User:** `DIVYANSHU`
 * **Database:** `dwdm_db`
 * **Schema:** `dwdm_schema`
-* **Warehouse:** `dwdm_wh` (`XSMALL`)
 
----
-
-## 📂 Repository Layout
-
-```text
-├── sql_scripts/          # Step-by-step SQL execution files for all tasks
-├── screenshots/          # Output validation proofs for submission report
-└── README.md             # Project documentation
+## Tasks Covered
+1. **Task 1:** SnowSQL login and session verification.
+2. **Task 2:** Creating warehouses, databases, schemas, internal stages, and running DML operations (`INSERT`, `UPDATE`, `DELETE`).
+3. **Task 3:** Staging and loading CSV data using `PUT` and `COPY INTO`.
+4. **Task 4:** Querying historical data using Time Travel offsets.
+5. **Task 5:** Recovering accidentally deleted records using `LAST_QUERY_ID()`.
