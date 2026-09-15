@@ -1,0 +1,53 @@
+-- 1. Create and set Warehouse
+CREATE OR REPLACE WAREHOUSE dwdm_wh 
+    WITH WAREHOUSE_SIZE = 'XSMALL' 
+    AUTO_SUSPEND = 60 
+    AUTO_RESUME = TRUE;
+USE WAREHOUSE dwdm_wh;
+
+-- 2. Create and set Database & Schema
+CREATE OR REPLACE DATABASE dwdm_db;
+USE DATABASE dwdm_db;
+
+CREATE OR REPLACE SCHEMA dwdm_schema;
+USE SCHEMA dwdm_schema;
+
+-- 3. Create Internal Stage
+CREATE OR REPLACE STAGE my_internal_stage;
+
+-- 4. Create Table with new schema structure
+CREATE OR REPLACE TABLE university_students (
+    roll_no INT,
+    student_name STRING,
+    major STRING,
+    cgpa FLOAT
+);
+
+-- 5. INSERT Operation (10 New Records)
+INSERT INTO university_students (roll_no, student_name, major, cgpa) 
+VALUES 
+    (201, 'Aditya', 'AI & ML', 8.8),
+    (202, 'Pooja', 'Data Science', 9.1),
+    (203, 'Vikram', 'CSE', 7.9),
+    (204, 'Ananya', 'IT', 8.5),
+    (205, 'Kiran', 'ECE', 8.2),
+    (206, 'Neha', 'AI & ML', 9.4),
+    (207, 'Varun', 'Data Science', 7.6),
+    (208, 'Riya', 'CSE', 8.9),
+    (209, 'Kabir', 'IT', 8.0),
+    (210, 'Divya', 'ECE', 9.2);
+
+-- 6. SELECT Operation
+SELECT * FROM university_students;
+
+-- 7. UPDATE Operation
+UPDATE university_students 
+SET cgpa = 9.5 
+WHERE roll_no = 201;
+
+-- 8. DELETE Operation
+DELETE FROM university_students 
+WHERE roll_no = 203;
+
+-- 9. Final Verification
+SELECT * FROM university_students;
